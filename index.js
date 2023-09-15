@@ -7,6 +7,9 @@ app.use(express.json());
 app.use(cors())
 require('dotenv').config(); 
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
+app.get("/",(req,res)=>{
+  res.send("Welcome to the homepage of codeconverter Backend")
+});
 app.post('/convert', async (req, res) => {
     try {
         const {langauge,code} = req.body;
