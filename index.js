@@ -12,7 +12,7 @@ app.get("/",(req,res)=>{
 });
 app.post('/convert', async (req, res) => {
     try {
-        const {langauge,code} = req.body;
+        const { language, code } = req.body; // Corrected field name
         
         let response = await fetch(`https://api.openai.com/v1/chat/completions`, {
             method: "POST",
@@ -22,7 +22,7 @@ app.post('/convert', async (req, res) => {
             },
             body: JSON.stringify({
                 model: "gpt-3.5-turbo",
-                messages: [{ role: "user", content: `convert this ${code} on this ${langauge} just give the code only` }],
+                messages: [{ role: "user", content: `convert this ${code} on this ${language} just give the code only dont give any explanation` }],
                 max_tokens: 1000
             })
         });
@@ -41,7 +41,8 @@ app.post('/convert', async (req, res) => {
         console.log(error);
         res.status(500).send({ msg: error.message });
     }
-  })
+})
+
 
   app.post('/debug', async (req, res) => {
     try {
